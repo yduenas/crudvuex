@@ -23,5 +23,26 @@ export default {
 		Formulario,
 		ListaTareas,
 	},
+	methods: {
+		/*
+		updateInfo() {
+			const arrayPersonas = [
+				{ id: 1, nombre: 'Diego,', apellido: 'Cueva' },
+				{ id: 2, nombre: 'Ytalo,', apellido: 'Duenas' },
+				{ id: 2, nombre: 'Claudia,', apellido: 'Bazan' },
+				{ id: 2, nombre: 'Luciano,', apellido: 'Miflin' },
+			];
+			const updateUser = { id: 2, nombre: 'Gael,', apellido: 'Duenas' };
+
+			const arrayUpdate = arrayPersonas.map((persona) => {
+				return persona.id === 2 ? { ...updateUser } : persona;
+			});
+
+			console.log(arrayUpdate);
+		},
+		*/
+		// ID Actualizar ===2 (escoger y pintar la info)
+		// Pasarle nueva informacion
+	},
 };
 </script>

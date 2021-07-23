@@ -1,8 +1,14 @@
 <template>
 	<div>
-		<h1>Soy el Formulario</h1>
-		<form @submit.prevent="procesarInformacion">
+		<h1>Editar</h1>
+
+		<form @submit.prevent="actualizarInformacion">
 			<div>
+				ID
+				<input type="text" placeholder="Id" v-model="tarea.id" readonly />
+			</div>
+			<div>
+				Nombre
 				<input
 					type="text"
 					placeholder="Ingrese nombre"
@@ -96,43 +102,32 @@
 </template>
 
 <script>
-import { v4 as uuidv4 } from 'uuid';
-import { mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 export default {
 	data() {
 		return {
-			tarea: {
-				id: '',
-				nombre: '',
-				frameworks: [],
-				jobTitle: '',
-				pretension: 0,
-			},
+			task: {},
 		};
 	},
-	methods: {
-		...mapActions(['setTareaAction']),
-		procesarInformacion() {
-			console.log(uuidv4());
-			//console.log(this.tarea);
-			if (this.tarea.nombre.trim() === '') {
-				console.log('Campo vacio');
-				return;
-			}
-			//gerenar ID
-			this.tarea.id = uuidv4();
-			console.log(this.tarea);
-			//mandar al action
-			this.setTareaAction(this.tarea);
+	computed: {
+		...mapState(['tarea']),
+	},
 
-			this.tarea = {
-				id: '',
-				nombre: '',
-				frameworks: [],
-				jobTitle: '',
-				pretension: 0,
-			};
+	methods: {
+		...mapActions(['updateTareaAction', 'actualizarTareaAction']),
+
+		actualizarInformacion() {
+			console.log(this.task);
+			this.actualizarTareaAction(this.task);
+			this.$router.push({ name: 'Home' });
 		},
+	},
+	created() {
+		console.log(this.$route.params.id);
+		//	updateTareaMutation();
+		this.updateTareaAction(this.$route.params.id);
+		console.log(this.tarea);
+		this.task = this.tarea;
 	},
 };
 </script>
